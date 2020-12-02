@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="ILSP Global Seguridad Privada, S.A.P.I. de C.V."
+        android:text="Universe"
         android:textColor="@color/colorLightFont"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

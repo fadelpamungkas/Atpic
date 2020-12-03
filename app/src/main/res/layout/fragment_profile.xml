@@ -6,61 +6,27 @@
     android:layout_height="match_parent"
     app:layout_behavior="github.com.st235.lib_expandablebottombar.behavior.ExpandableBottomBarScrollableBehavior">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-
-                <TextView
-                    android:id="@+id/toolbar_title"
-                    style="@style/TextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/allerta"
-                    android:maxEms="15"
-                    android:text="@string/profile"
-                    android:textColor="@color/black"
-                    android:textSize="21sp" />
-
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis volutpat lectus bibendum, facilisis arcu a, finibus diam. Ut semper tempor mauris nec consectetur. Duis et rutrum dolor, non ultricies elit. Integer magna leo, lacinia sed dignissim at, fermentum ac neque. Sed in rhoncus augue, a ultrices sapien. Donec mauris enim, laoreet at consectetur sed, vehicula sit amet dui. Sed scelerisque justo faucibus ipsum luctus, eget tempor neque molestie. Pellentesque eget urna sit amet est rutrum tristique ut et dolor.
-
-Quisque vehicula blandit lacus, ut maximus sem pretium laoreet. Cras feugiat ex ut tellus mollis ultrices. Praesent gravida pharetra porttitor. Donec viverra, lectus nec iaculis rhoncus, dui libero varius justo, vitae dignissim metus sem et tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi placerat nulla eu sapien tempus, sed eleifend ante dapibus. Aenean dictum metus consequat arcu tempus accumsan. In ac nulla nisl. Aliquam erat volutpat. Phasellus gravida porttitor odio. Suspendisse interdum mollis nulla auctor fermentum. Duis quis lorem et tellus condimentum ultricies fringilla eget sem. Donec vel vulputate justo, a consectetur nibh.
-
-Ut finibus rhoncus lorem sit amet pulvinar. Duis euismod in nibh a vulputate. Mauris magna sapien, semper quis aliquet nec, malesuada ac turpis. Proin mattis sed lorem a rutrum. Nullam sed ligula id ante semper imperdiet sit amet vitae dolor. Duis ut orci eu urna vehicula lobortis sit amet euismod nulla. Integer ultricies erat vitae ante tempor sagittis. In sed vestibulum urna. Duis volutpat aliquam vehicula. Nunc velit ligula, aliquet vel dolor at, viverra imperdiet nibh. Etiam dignissim elit vitae consectetur dignissim. Vestibulum in lectus vitae velit aliquam fermentum. Aenean scelerisque mollis ex ut convallis. Pellentesque ut imperdiet lacus. Vivamus laoreet sed nisl quis vulputate.
-
-Suspendisse eget sem a risus pellentesque tincidunt. Duis vel facilisis nisi. Nam placerat quis lacus vitae molestie. Donec ut metus eros. Mauris felis tellus, faucibus a nunc at, faucibus congue dui. Cras sit amet pharetra mauris, in pretium nibh. Donec blandit congue lectus, quis fermentum erat. Curabitur viverra consectetur justo, a blandit eros commodo ac. Vestibulum ultricies aliquet pulvinar. Cras pharetra tincidunt pulvinar. Phasellus placerat tempor mi, non mollis velit fermentum vel. Cras at egestas est. Fusce eget euismod tortor. Nullam sed elementum tellus, et venenatis augue. Quisque at libero aliquam, pulvinar neque vitae, ultricies nibh. Aenean sollicitudin rhoncus erat, posuere ullamcorper felis posuere sed.
-
-Phasellus ipsum ipsum, euismod quis nibh vitae, iaculis rhoncus risus. Etiam sem purus, malesuada vel enim in, vulputate scelerisque purus. Maecenas quis volutpat magna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris elementum, ex eu ornare accumsan, odio orci rhoncus leo, non placerat erat purus vel justo. Sed imperdiet, magna lacinia consectetur porta, odio eros tempus massa, at vulputate tortor nisl quis felis. Pellentesque aliquam nec purus vel pulvinar. Integer auctor lobortis tellus. Sed quam ipsum, rutrum et sollicitudin ut, faucibus nec sem. Maecenas in lobortis risus. "
+                android:text="@string/loremipsum"
                 android:textColor="#000"
                 android:layout_gravity="center"
                 android:textSize="22sp"
                 tools:ignore="HardcodedText" />
 
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
 
-    </LinearLayout>
-
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

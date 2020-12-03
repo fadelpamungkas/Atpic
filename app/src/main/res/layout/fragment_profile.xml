@@ -6,27 +6,31 @@
     android:layout_height="match_parent"
     app:layout_behavior="github.com.st235.lib_expandablebottombar.behavior.ExpandableBottomBarScrollableBehavior">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="14dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/profile_name"
+            style="@style/TextStyle2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cabin_medium"
+            android:text="Fadel Pamungkas"
+            android:textSize="54sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_bg_filled"
+            app:layout_constraintTop_toBottomOf="@id/profile_name"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/loremipsum"
-                android:textColor="#000"
-                android:layout_gravity="center"
-                android:textSize="22sp"
-                tools:ignore="HardcodedText" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

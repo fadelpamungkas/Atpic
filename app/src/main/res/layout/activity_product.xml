@@ -92,6 +92,7 @@
         <TextView
             android:id="@+id/about"
             style="@style/TextStyle"
+            android:fontFamily="@font/poppins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details"
@@ -111,8 +112,8 @@
 
             <ImageView
                 android:id="@+id/iconPerson"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@drawable/ic_person_blue"/>
 
             <TextView
@@ -135,8 +136,8 @@
 
             <ImageView
                 android:id="@+id/iconCalendar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@drawable/ic_calendar_blue"/>
 
             <TextView
@@ -159,8 +160,8 @@
 
             <ImageView
                 android:id="@+id/iconCategory"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@drawable/ic_category_blue"/>
             <TextView
                 android:id="@+id/product_category"
@@ -173,6 +174,7 @@
         <TextView
             android:id="@+id/desc"
             style="@style/TextStyle"
+            android:fontFamily="@font/poppins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
@@ -189,8 +191,6 @@
             app:layout_constraintTop_toBottomOf="@id/desc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -201,6 +201,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/white"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -211,8 +215,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="4dp"
-            android:background="@drawable/button_bg"
-            android:textColor="@color/default1"
+            android:background="@drawable/button_bg_filled2"
+            android:textColor="@color/white"
             android:text="Buy Now"
             android:layout_weight="0.8"/>
 

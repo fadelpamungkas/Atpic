@@ -11,6 +11,7 @@
     <color name="colorPrimaryDark">#aa003c</color>
     <color name="colorAccent">@android:color/white</color>
     <color name="colorLightFont">#ddd</color>
+    <color name="default0">#0087C1</color>
     <color name="default1">#3490dc</color>
     <color name="default2">#72befc</color>
     <color name="default3">#a5d3fa</color>

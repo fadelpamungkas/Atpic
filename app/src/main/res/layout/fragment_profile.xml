@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     app:layout_behavior="github.com.st235.lib_expandablebottombar.behavior.ExpandableBottomBarScrollableBehavior">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,9 +23,9 @@
             style="@style/TextStyle2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/cabin_medium"
+            android:fontFamily="@font/poppins_medium"
             android:text="Fadel Pamungkas"
-            android:textSize="54sp"
+            android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,38 +40,39 @@
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <View
+
+        <RelativeLayout
+            android:id="@+id/rlCredit"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:elevation="1dp"
             android:background="@drawable/button_bg_filled_white"
             app:layout_constraintTop_toBottomOf="@id/btn_edit"
-            app:layout_constraintBottom_toTopOf="@id/myproduct"/>
+            app:layout_constraintBottom_toTopOf="@id/myproduct">
 
-        <TextView
-            android:id="@+id/credit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Credits"
-            android:fontFamily="@font/poppins"
-            android:layout_marginTop="20dp"
-            android:elevation="1dp"
-            style="@style/TextStyle"
-            app:layout_constraintTop_toBottomOf="@id/btn_edit"
-            app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/credit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Credits"
+                android:fontFamily="@font/poppins"
+                android:layout_marginTop="10dp"
+                android:elevation="1dp"
+                style="@style/TextStyle"/>
 
-        <TextView
-            android:id="@+id/tv_credit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rp20.000"
-            android:fontFamily="@font/poppins"
-            android:elevation="1dp"
-            style="@style/TextStyle2"
-            app:layout_constraintTop_toBottomOf="@id/credit"
-            app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/tv_credit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp20.000"
+                android:layout_below="@id/credit"
+                android:fontFamily="@font/poppins"
+                android:elevation="1dp"
+                style="@style/TextStyle2"/>
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/myproduct"
@@ -77,35 +82,41 @@
             android:fontFamily="@font/poppins"
             android:layout_marginTop="20dp"
             style="@style/TextStyle"
-            app:layout_constraintTop_toBottomOf="@id/tv_credit"
+            app:layout_constraintTop_toBottomOf="@id/rlCredit"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_myProduct"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_addProduct"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myproduct"
             app:spanCount="2"
             tools:listitem="@layout/item_cardview" />
 
+        <Button
+            android:id="@+id/btn_addProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Product"
+            android:textColor="@color/white"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_bg_filled2"
+            app:layout_constraintTop_toBottomOf="@id/rv_myProduct"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btn_addProduct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Product"
-        android:textColor="@color/white"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/button_bg_filled2"
-        android:layout_gravity="bottom"/>
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Atpic">
-        <activity android:name=".PaymentActivity"></activity>
-        <activity android:name=".ExploreActivity" />
-        <activity android:name=".ProductActivity" />
+        <activity android:name=".PaymentActivity">
+        </activity>
+        <activity android:name=".ExploreActivity" >
+        </activity>
+        <activity android:name=".ProductActivity" >
+        </activity>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".LoginActivity"

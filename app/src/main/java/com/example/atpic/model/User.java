@@ -4,6 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
+    private String id, name, email, password;
+
+    public User(){
+
+    }
+
     public String getId() {
         return id;
     }
@@ -36,9 +42,7 @@ public class User implements Parcelable {
         this.password = password;
     }
 
-    private String id, name, email, password;
-
-    protected User(Parcel in) {
+    public User(Parcel in) {
         id = in.readString();
         name = in.readString();
         email = in.readString();

@@ -54,4 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    public void btnRegister(View view) {
+        Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
+        startActivity(intent);
+    }
+
 }

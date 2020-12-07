@@ -1,4 +1,4 @@
-package com.example.atpic;
+package com.android.atpic;
 
 import org.junit.Test;
 

@@ -1,14 +1,14 @@
-package com.example.atpic;
+package com.android.atpic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class PaymentActivity extends AppCompatActivity {
+public class ExploreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment);
+        setContentView(R.layout.activity_explore);
     }
 }

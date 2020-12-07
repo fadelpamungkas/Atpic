@@ -1,4 +1,4 @@
-package com.example.atpic.model;
+package com.android.atpic.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,9 +6,12 @@ import android.os.Parcelable;
 import java.util.Date;
 
 public class Product implements Parcelable {
-    private String name, desc;
-    private int id, sold, id_photo, id_user, id_category, id_transaction;
+    private String id, name, desc;
+    private int sold, id_photo, id_user, id_category, id_transaction;
     private Date upload_date;
+
+    public Product(){
+    }
 
     public String getName() {
         return name;
@@ -26,11 +29,11 @@ public class Product implements Parcelable {
         this.desc = desc;
     }
 
-    public int getId() {
+    public String  getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -86,7 +89,7 @@ public class Product implements Parcelable {
     protected Product(Parcel in) {
         name = in.readString();
         desc = in.readString();
-        id = in.readInt();
+        id = in.readString();
         sold = in.readInt();
         id_photo = in.readInt();
         id_user = in.readInt();
@@ -98,7 +101,7 @@ public class Product implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeString(desc);
-        dest.writeInt(id);
+        dest.writeString(id);
         dest.writeInt(sold);
         dest.writeInt(id_photo);
         dest.writeInt(id_user);

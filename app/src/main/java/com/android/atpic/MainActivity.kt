@@ -1,12 +1,10 @@
-package com.example.atpic
+package com.android.atpic
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import github.com.st235.lib_expandablebottombar.navigation.ExpandableBottomBarNavigationUI
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar_main.*
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.atpic;
+package com.android.atpic;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;

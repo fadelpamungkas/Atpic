@@ -1,14 +1,16 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.atpic"
+        applicationId "com.android.atpic"
         minSdkVersion 28
         targetSdkVersion 30
         versionCode 1
@@ -38,8 +40,6 @@ dependencies {
 
     // Firebase
     implementation 'com.google.firebase:firebase-database:19.5.1'
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation platform('com.google.firebase:firebase-bom:26.1.1')
 
     // Navigation
     implementation 'me.listenzz:navigation:2.7.0'
@@ -75,4 +75,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+repositories {
+    mavenCentral()
 }

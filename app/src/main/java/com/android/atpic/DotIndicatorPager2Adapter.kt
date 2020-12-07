@@ -1,9 +1,10 @@
-package com.example.atpic
+package com.android.atpic
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.android.atpic.R
 
 class DotIndicatorPager2Adapter : RecyclerView.Adapter<ViewHolder>() {
 

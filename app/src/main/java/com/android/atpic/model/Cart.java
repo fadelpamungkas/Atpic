@@ -1,4 +1,4 @@
-package com.example.atpic.model;
+package com.android.atpic.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

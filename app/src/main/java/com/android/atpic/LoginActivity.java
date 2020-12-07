@@ -1,4 +1,4 @@
-package com.example.atpic;
+package com.android.atpic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.royrodriguez.transitionbutton.TransitionButton;
 import com.royrodriguez.transitionbutton.utils.WindowUtils;
 
 public class LoginActivity extends AppCompatActivity {
-
     private TransitionButton transitionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

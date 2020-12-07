@@ -1,11 +1,10 @@
-package com.example.atpic
+package com.android.atpic
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.toolbar_main.*
 
 internal class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,

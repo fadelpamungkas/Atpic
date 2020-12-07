@@ -1,13 +1,15 @@
-package com.example.atpic.model;
+package com.android.atpic.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class User implements Parcelable {
-    private String id, name, email, password;
+public class Users implements Parcelable {
+    private String id;
+    private String name;
+    private String email;
+    private String password;
 
-    public User(){
-
+    public Users(){
     }
 
     public String getId() {
@@ -42,19 +44,19 @@ public class User implements Parcelable {
         this.password = password;
     }
 
-    public User(Parcel in) {
-        id = in.readString();
-        name = in.readString();
-        email = in.readString();
-        password = in.readString();
+    public Users(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.email = in.readString();
+        this.password = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeString(email);
-        dest.writeString(password);
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.email);
+        dest.writeString(this.password);
     }
 
     @Override
@@ -62,15 +64,15 @@ public class User implements Parcelable {
         return 0;
     }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
+    public static final Creator<Users> CREATOR = new Creator<Users>() {
         @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
+        public Users createFromParcel(Parcel in) {
+            return new Users(in);
         }
 
         @Override
-        public User[] newArray(int size) {
-            return new User[size];
+        public Users[] newArray(int size) {
+            return new Users[size];
         }
     };
 }

@@ -1,4 +1,4 @@
-package com.android.atpic
+package com.android.atpic.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

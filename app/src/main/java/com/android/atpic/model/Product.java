@@ -6,11 +6,19 @@ import android.os.Parcelable;
 import java.util.Date;
 
 public class Product implements Parcelable {
-    private String id, name, desc;
-    private int sold, id_photo, id_user, id_category, id_transaction;
+    private String id, name, desc, id_photo, id_user, id_category, id_transaction;
+    private long sold, price;
     private Date upload_date;
 
     public Product(){
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -29,52 +37,52 @@ public class Product implements Parcelable {
         this.desc = desc;
     }
 
-    public String  getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getSold() {
-        return sold;
-    }
-
-    public void setSold(int sold) {
-        this.sold = sold;
-    }
-
-    public int getId_photo() {
+    public String getId_photo() {
         return id_photo;
     }
 
-    public void setId_photo(int id_photo) {
+    public void setId_photo(String id_photo) {
         this.id_photo = id_photo;
     }
 
-    public int getId_user() {
+    public String getId_user() {
         return id_user;
     }
 
-    public void setId_user(int id_user) {
+    public void setId_user(String id_user) {
         this.id_user = id_user;
     }
 
-    public int getId_category() {
+    public String getId_category() {
         return id_category;
     }
 
-    public void setId_category(int id_category) {
+    public void setId_category(String id_category) {
         this.id_category = id_category;
     }
 
-    public int getId_transaction() {
+    public String getId_transaction() {
         return id_transaction;
     }
 
-    public void setId_transaction(int id_transaction) {
+    public void setId_transaction(String id_transaction) {
         this.id_transaction = id_transaction;
+    }
+
+    public long getSold() {
+        return sold;
+    }
+
+    public void setSold(long sold) {
+        this.sold = sold;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
     }
 
     public Date getUpload_date() {
@@ -85,28 +93,29 @@ public class Product implements Parcelable {
         this.upload_date = upload_date;
     }
 
-
     protected Product(Parcel in) {
+        id = in.readString();
         name = in.readString();
         desc = in.readString();
-        id = in.readString();
-        sold = in.readInt();
-        id_photo = in.readInt();
-        id_user = in.readInt();
-        id_category = in.readInt();
-        id_transaction = in.readInt();
+        id_photo = in.readString();
+        id_user = in.readString();
+        id_category = in.readString();
+        id_transaction = in.readString();
+        sold = in.readLong();
+        price = in.readLong();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
         dest.writeString(name);
         dest.writeString(desc);
-        dest.writeString(id);
-        dest.writeInt(sold);
-        dest.writeInt(id_photo);
-        dest.writeInt(id_user);
-        dest.writeInt(id_category);
-        dest.writeInt(id_transaction);
+        dest.writeString(id_photo);
+        dest.writeString(id_user);
+        dest.writeString(id_category);
+        dest.writeString(id_transaction);
+        dest.writeLong(sold);
+        dest.writeLong(price);
     }
 
     @Override

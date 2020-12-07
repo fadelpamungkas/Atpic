@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.android.atpic.adapter.DotIndicatorPager2Adapter;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 public class ProductActivity extends AppCompatActivity {

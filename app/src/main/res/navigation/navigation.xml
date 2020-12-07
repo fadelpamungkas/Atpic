@@ -6,19 +6,19 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.example.atpic.HomeFragment"
+        android:name="com.android.atpic.HomeFragment"
         android:label="Home Fragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/cart"
-        android:name="com.example.atpic.CartFragment"
+        android:name="com.android.atpic.CartFragment"
         android:label="Cart Fragment"
         tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/profile"
-        android:name="com.example.atpic.ProfileFragment"
+        android:name="com.android.atpic.ProfileFragment"
         android:label="Profile Fragment"
         tools:layout="@layout/fragment_profile" />
 

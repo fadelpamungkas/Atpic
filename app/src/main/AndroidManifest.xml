@@ -17,6 +17,7 @@
         <activity android:name=".PaymentActivity"></activity>
         <activity android:name=".ExploreActivity"></activity>
         <activity android:name=".ProductActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/SplashTheme">

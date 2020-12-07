@@ -8,6 +8,7 @@ public class Users implements Parcelable {
     private String name;
     private String email;
     private String password;
+    private long credit;
 
     public Users(){
     }
@@ -44,11 +45,20 @@ public class Users implements Parcelable {
         this.password = password;
     }
 
+    public long getCredit() {
+        return credit;
+    }
+
+    public void setCredit(long credit) {
+        this.credit = credit;
+    }
+
     public Users(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
         this.email = in.readString();
         this.password = in.readString();
+        this.credit = in.readLong();
     }
 
     @Override
@@ -57,6 +67,7 @@ public class Users implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.email);
         dest.writeString(this.password);
+        dest.writeLong(this.credit);
     }
 
     @Override

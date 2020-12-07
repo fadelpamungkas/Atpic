@@ -1,5 +1,6 @@
 package com.android.atpic;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.atpic.model.Users;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.royrodriguez.transitionbutton.TransitionButton;
@@ -25,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Users users;
 
     DatabaseReference database;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         getSupportActionBar().hide();
 
         database = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
         etName = findViewById(R.id.et_name);
         etEmail = findViewById(R.id.et_email);
@@ -72,54 +79,63 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if(view.getId() == R.id.register_button){
             btnRegister.startAnimation();
 
-            // Do your networking task or background work here.
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    String name = etName.getText().toString().trim();
-                    String email = etEmail.getText().toString().trim();
-                    String password = etPassword.getText().toString().trim();
+            String name = etName.getText().toString().trim();
+            String email = etEmail.getText().toString().trim();
+            String password = etPassword.getText().toString().trim();
 
-                    boolean isEmpty = false;
+            boolean isEmpty = false;
 
-                    if (TextUtils.isEmpty(name)){
-                        isEmpty = true;
-                        etName.setError("Field cannot be blank!");
+            if (TextUtils.isEmpty(name)){
+                isEmpty = true;
+                etName.setError("Field cannot be blank!");
+            }
+            if (TextUtils.isEmpty(email)){
+                isEmpty = true;
+                etEmail.setError("Field cannot be blank!");
+            }
+            if (TextUtils.isEmpty(password)){
+                isEmpty = true;
+                etPassword.setError("Field cannot be blank!");
+            }
+
+
+            if (!isEmpty) {
+                // Do your networking task or background work here.
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        mAuth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(RegisterActivity.this, "Register Success", Toast.LENGTH_SHORT).show();
+                                            btnRegister.stopAnimation(TransitionButton.StopAnimationStyle.EXPAND, new TransitionButton.OnAnimationStopEndListener() {
+                                                @Override
+                                                public void onAnimationStopEnd() {
+                                                    users.setId(mAuth.getUid());
+                                                    users.setName(name);
+                                                    users.setEmail(email);
+                                                    users.setPassword(password);
+                                                    users.setCredit(0);
+                                                    database.child("users").child(mAuth.getUid()).setValue(users);
+                                                    finish();
+                                                }
+                                            });
+                                        } else{
+                                            Toast.makeText(RegisterActivity.this, "Register Failed", Toast.LENGTH_SHORT).show();
+                                            btnRegister.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null);
+                                        }
+                                    }
+                                });
                     }
-                    if (TextUtils.isEmpty(email)){
-                        isEmpty = true;
-                        etEmail.setError("Field cannot be blank!");
-                    }
-                    if (TextUtils.isEmpty(password)){
-                        isEmpty = true;
-                        etPassword.setError("Field cannot be blank!");
-                    }
+                }, 2000);
 
-                    if (!isEmpty) {
-                        btnRegister.stopAnimation(TransitionButton.StopAnimationStyle.EXPAND, new TransitionButton.OnAnimationStopEndListener() {
-                            @Override
-                            public void onAnimationStopEnd() {
-                                DatabaseReference dbUser = database.child("users");
-
-                                String id = dbUser.push().getKey();
-
-                                users.setId(id);
-                                users.setName(name);
-                                users.setEmail(email);
-                                users.setPassword(password);
-
-                                dbUser.child(id).setValue(users);
-
-                                Toast.makeText(RegisterActivity.this, "Register Success", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
-                        });
-                    } else {
-                        btnRegister.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null);
-                    }
-                }
-            }, 2000);
+            } else {
+                btnRegister.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null);
+            }
         } else if(view.getId() == R.id.btnLogin){
             finish();
         } else{

@@ -29,6 +29,7 @@ internal class ProfileFragment : Fragment() {
         val credit = view.findViewById<TextView>(R.id.tv_credit)
 
 
+
         btnAdd.setOnClickListener {
             val dbProduct = database.child("product")
             val id = dbProduct.push().key

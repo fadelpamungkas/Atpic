@@ -119,4 +119,11 @@ Suspendisse eget sem a risus pellentesque tincidunt. Duis vel facilisis nisi. Na
 
 Phasellus ipsum ipsum, euismod quis nibh vitae, iaculis rhoncus risus. Etiam sem purus, malesuada vel enim in, vulputate scelerisque purus. Maecenas quis volutpat magna. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris elementum, ex eu ornare accumsan, odio orci rhoncus leo, non placerat erat purus vel justo. Sed imperdiet, magna lacinia consectetur porta, odio eros tempus massa, at vulputate tortor nisl quis felis. Pellentesque aliquam nec purus vel pulvinar. Integer auctor lobortis tellus. Sed quam ipsum, rutrum et sollicitudin ut, faucibus nec sem. Maecenas in lobortis risus. "
     </string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_add_product">AddProductActivity</string>
 </resources>

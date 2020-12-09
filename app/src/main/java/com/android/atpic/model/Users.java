@@ -21,6 +21,14 @@ public class Users implements Parcelable {
         this.id = id;
     }
 
+    public long getCredit() {
+        return credit;
+    }
+
+    public void setCredit(long credit) {
+        this.credit = credit;
+    }
+
     public String getName() {
         return name;
     }

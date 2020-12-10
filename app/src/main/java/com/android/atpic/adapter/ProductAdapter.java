@@ -1,6 +1,8 @@
 package com.android.atpic.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.atpic.R;
@@ -16,9 +19,9 @@ import com.android.atpic.model.Product;
 
 import java.util.ArrayList;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.CardViewViewHolder> {
     private Context context;
-    private ArrayList<Product> productList = new ArrayList<>();
+    private ArrayList<Product> productList;
 
     public ProductAdapter(Context context){
         this.context = context;
@@ -32,46 +35,36 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         this.productList = productList;
     }
 
-    public int getCount() {
-        return productList.size();
-    }
-
-    public Object getItem(int i) {
-        return productList.get(i);
-    }
-
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_cardview, viewGroup, false);
-        return new ViewHolder(view);
+    public CardViewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview,parent,  false);
+        return new CardViewViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Product product = (Product) getItem(position);
-        holder.name.setText(product.getName());
-        holder.price.setText((int) product.getPrice());
-    }
-    @Override
-    public long getItemId(int i) {
-        return i;
+    public void onBindViewHolder(@NonNull ProductAdapter.CardViewViewHolder holder, final int position) {
+
+        holder.name.setText(getProductList().get(position).getName());
+        String priceToString = String.valueOf(getProductList().get(position).getPrice());
+        holder.price.setText(priceToString);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return getProductList().size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public class CardViewViewHolder extends RecyclerView.ViewHolder {
         private TextView price, name;
         private ImageView image;
 
-        ViewHolder(View view){
-            super(view);
-            name = view.findViewById(R.id.tv_productName);
-            price = view.findViewById(R.id.tv_productPrice);
-            image = view.findViewById(R.id.iv_productImage);
+        public CardViewViewHolder(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.tv_productName);
+            price = itemView.findViewById(R.id.tv_productPrice);
+            image = itemView.findViewById(R.id.iv_productImage);
         }
     }
 }

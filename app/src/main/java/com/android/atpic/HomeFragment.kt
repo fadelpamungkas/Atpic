@@ -21,14 +21,15 @@ internal class HomeFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_bestSeller)
 
-        database.addValueEventListener(object : ValueEventListener{
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 productList.clear()
 
-                for (data in snapshot.children){
+                for (data in snapshot.children) {
                     val product = data.getValue(Product::class.java)
                     if (product != null) {
                         productList.add(product)
+                        println(product)
                     }
                     adapter.productList = productList
                     recyclerView.adapter = adapter

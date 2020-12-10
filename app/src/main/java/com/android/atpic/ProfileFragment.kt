@@ -1,6 +1,6 @@
 package com.android.atpic
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment
 import com.android.atpic.model.Product
 import com.android.atpic.model.Users
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 internal class ProfileFragment : Fragment() {
     var product : Product = Product()
@@ -52,8 +54,14 @@ internal class ProfileFragment : Fragment() {
         val btnAdd = view.findViewById<Button>(R.id.btn_addProduct)
         val name = view.findViewById<TextView>(R.id.tv_profileName)
         val credit = view.findViewById<TextView>(R.id.tv_credit)
+        val btnEdit = view.findViewById<Button>(R.id.btn_edit)
 
-
+        btnEdit.setOnClickListener{
+            activity?.let{
+                val intent = Intent (it, EditProfileActivity::class.java)
+                it.startActivity(intent)
+            }
+        }
 
         btnAdd.setOnClickListener {
             val dbProduct = database.child("product")

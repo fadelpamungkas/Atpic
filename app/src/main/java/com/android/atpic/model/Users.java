@@ -8,6 +8,7 @@ public class Users implements Parcelable {
     private String name;
     private String email;
     private String password;
+    private String cart;
     private long credit;
 
     public Users(){
@@ -27,6 +28,14 @@ public class Users implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCart() {
+        return cart;
+    }
+
+    public void setCart(String cart) {
+        this.cart = cart;
     }
 
     public String getEmail() {
@@ -58,6 +67,7 @@ public class Users implements Parcelable {
         this.name = in.readString();
         this.email = in.readString();
         this.password = in.readString();
+        this.cart = in.readString();
         this.credit = in.readLong();
     }
 
@@ -67,6 +77,7 @@ public class Users implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.email);
         dest.writeString(this.password);
+        dest.writeString(this.cart);
         dest.writeLong(this.credit);
     }
 

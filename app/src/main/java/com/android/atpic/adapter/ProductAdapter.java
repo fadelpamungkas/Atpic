@@ -49,8 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.CardView
     public void onBindViewHolder(@NonNull ProductAdapter.CardViewViewHolder holder, final int position) {
 
         holder.name.setText(getProductList().get(position).getName());
-        String priceToString = String.valueOf(getProductList().get(position).getPrice());
-        holder.price.setText(priceToString);
+        holder.price.setText(String.valueOf(getProductList().get(position).getPrice()));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

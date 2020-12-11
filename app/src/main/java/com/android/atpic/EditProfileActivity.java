@@ -116,9 +116,9 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
             dbUsers.child(usersId).setValue(users);
 
-            finish();
-        }
 
+        }
+        finish();
     }
 
 

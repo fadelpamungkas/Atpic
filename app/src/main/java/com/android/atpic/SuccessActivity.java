@@ -31,6 +31,7 @@ public class SuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
 
+
         btnHome = findViewById(R.id.btnHome);
         success = findViewById(R.id.lav_success);
         success.playAnimation();

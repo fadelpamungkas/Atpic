@@ -33,9 +33,7 @@ internal class ProfileFragment : Fragment() {
                 users = snapshot.getValue(Users::class.java)!!
 
                 tv_profileName.text = users.name
-                tv_credit.text = users.credit.toString()
-
-                Toast.makeText(activity?.baseContext, "id: " + users.id + "name:" + users.name + " credit: " + users.credit.toString(), Toast.LENGTH_SHORT).show()
+                tv_credit.text = "Rp" + users.credit.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {

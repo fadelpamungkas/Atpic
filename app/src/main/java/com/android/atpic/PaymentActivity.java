@@ -35,12 +35,12 @@ public class PaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        product = getIntent().getParcelableExtra(EXTRA_PRODUCT);
+        productList = new ArrayList<Product>();
+        users = new Users();
+        productList = getIntent().getParcelableArrayListExtra(EXTRA_PRODUCT);
         users = getIntent().getParcelableExtra(EXTRA_USERS);
 
         adapter = new CartAdapter(this);
-
-        productList = new ArrayList<Product>();
 
         name = findViewById(R.id.tv_buyerName);
         email = findViewById(R.id.tv_buyerEmail);
@@ -51,17 +51,16 @@ public class PaymentActivity extends AppCompatActivity {
         total = findViewById(R.id.tv_total);
         btnPay = findViewById(R.id.btn_pay);
 
-        productList.add(product);
         adapter.setProductList(productList);
         price = 0;
 
         for (Product p : productList){
-            price += product.getPrice();
+            price += p.getPrice();
         }
 
         name.setText(users.getName());
         email.setText(users.getEmail());
-        credit.setText(String.valueOf(users.getCredit()));
+        credit.setText(String.valueOf("Rp" + users.getCredit()));
         subtotal.setText(String.valueOf("Rp" + price));
         taxes.setText("Rp10000");
         total.setText(String.valueOf("Rp" + (price + 10000)));

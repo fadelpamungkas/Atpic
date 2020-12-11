@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import java.util.ArrayList;
+
 public class ProductActivity extends AppCompatActivity {
 
     DotsIndicator dotsIndicator;
@@ -91,8 +93,10 @@ public class ProductActivity extends AppCompatActivity {
         btnBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ArrayList<Product> productList = new ArrayList<>();
+                productList.add(product);
                 Intent intent = new Intent(ProductActivity.this, PaymentActivity.class);
-                intent.putExtra(PaymentActivity.EXTRA_PRODUCT, product);
+                intent.putParcelableArrayListExtra(PaymentActivity.EXTRA_PRODUCT, productList);
                 intent.putExtra(PaymentActivity.EXTRA_USERS, users);
                 startActivity(intent);
             }

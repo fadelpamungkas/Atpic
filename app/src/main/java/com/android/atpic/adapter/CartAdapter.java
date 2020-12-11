@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.atpic.ProductActivity;
 import com.android.atpic.R;
 import com.android.atpic.model.Product;
 
@@ -46,6 +48,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CardViewViewHo
         holder.name.setText(getProductList().get(position).getName());
         String priceToString = String.valueOf(getProductList().get(position).getPrice());
         holder.price.setText(priceToString);
+        holder.landscapeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ProductActivity.class);
+                intent.putExtra(ProductActivity.EXTRA_PARCEL, getProductList().get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -56,12 +66,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CardViewViewHo
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
         private TextView price, name;
         private ImageView image;
+        private ConstraintLayout landscapeView;
 
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.tv_productName);
             price = itemView.findViewById(R.id.tv_productPrice);
             image = itemView.findViewById(R.id.iv_productImage);
+            landscapeView = itemView.findViewById(R.id.landscapeView);
         }
     }
 }

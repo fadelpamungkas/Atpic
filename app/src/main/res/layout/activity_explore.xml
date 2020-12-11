@@ -28,76 +28,97 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <HorizontalScrollView
-        android:id="@+id/categoryScrollView"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_centerVertical="true"
+        android:background="@color/white"
+        app:tabSelectedTextColor="@color/default3"
+        app:tabTextColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:scrollbars="none">
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Template"
-                android:paddingRight="30dp"
-                android:paddingLeft="30dp"
-                android:background="@drawable/button_bg_filled_white"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Photo"
-                android:paddingRight="30dp"
-                android:paddingLeft="30dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/button_bg_filled_white"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fonts"
-                android:paddingRight="30dp"
-                android:paddingLeft="30dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/button_bg_filled_white"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Music"
-                android:paddingRight="30dp"
-                android:paddingLeft="30dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/button_bg_filled_white"/>
-        </LinearLayout>
-
-    </HorizontalScrollView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_bestSeller"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:scrollbarStyle="outsideOverlay"
-        android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/categoryScrollView"
-        app:spanCount="2"
-        tools:listitem="@layout/item_cardview" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/categoryScrollView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/toolbar"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:scrollbars="none">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Template"-->
+<!--                android:paddingRight="30dp"-->
+<!--                android:paddingLeft="30dp"-->
+<!--                android:background="@drawable/button_bg_filled_white"/>-->
+
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Photo"-->
+<!--                android:paddingRight="30dp"-->
+<!--                android:paddingLeft="30dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:background="@drawable/button_bg_filled_white"/>-->
+
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Fonts"-->
+<!--                android:paddingRight="30dp"-->
+<!--                android:paddingLeft="30dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:background="@drawable/button_bg_filled_white"/>-->
+
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Music"-->
+<!--                android:paddingRight="30dp"-->
+<!--                android:paddingLeft="30dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:background="@drawable/button_bg_filled_white"/>-->
+<!--        </LinearLayout>-->
+
+<!--    </HorizontalScrollView>-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rv_bestSeller"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:clipToPadding="false"-->
+<!--        android:paddingLeft="20dp"-->
+<!--        android:paddingRight="20dp"-->
+<!--        android:scrollbarStyle="outsideOverlay"-->
+<!--        android:scrollbars="vertical"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/categoryScrollView"-->
+<!--        app:spanCount="2"-->
+<!--        tools:listitem="@layout/item_cardview" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

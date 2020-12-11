@@ -54,7 +54,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.CardView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ProductActivity.class);
-                intent.putExtra(ProductActivity.EXTRA_PARCEL, productList.get(position));
+                intent.putExtra(ProductActivity.EXTRA_PARCEL, getProductList().get(position));
                 context.startActivity(intent);
             }
         });

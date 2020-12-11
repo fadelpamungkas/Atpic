@@ -53,6 +53,7 @@ internal class ProfileFragment : Fragment() {
 
 
         val btnAdd = view.findViewById<Button>(R.id.btn_addProduct)
+        val btnTopUp = view.findViewById<Button>(R.id.btn_topup)
         val name = view.findViewById<TextView>(R.id.tv_profileName)
         val credit = view.findViewById<TextView>(R.id.tv_credit)
         val btnEdit = view.findViewById<Button>(R.id.btn_edit)
@@ -66,6 +67,12 @@ internal class ProfileFragment : Fragment() {
 
         btnAdd.setOnClickListener {
             val intent = Intent(activity , AddProductActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        btnTopUp.setOnClickListener {
+            val intent = Intent(activity , TopUpActivity::class.java)
             startActivity(intent)
 
         }

@@ -72,6 +72,26 @@
                 android:elevation="1dp"
                 style="@style/TextStyle2"/>
 
+            <Button
+                android:id="@+id/btn_topup"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/topup"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="25dp"
+                android:layout_toEndOf="@id/credit"/>
+
+            <TextView
+                style="@style/TextStyle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="245dp"
+                android:layout_marginTop="39dp"
+                android:text="Top Up"
+                android:textColor="@color/black"/>
+
+
+
         </RelativeLayout>
 
         <TextView

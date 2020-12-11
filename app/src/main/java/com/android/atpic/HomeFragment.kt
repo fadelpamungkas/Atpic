@@ -1,5 +1,6 @@
 package com.android.atpic
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import com.android.atpic.model.Product
 import com.google.firebase.database.*
 
 internal class HomeFragment : Fragment() {
-    val adapter = ProductAdapter(this.context)
+    val adapter = ProductAdapter(activity)
     val productList = ArrayList<Product>()
     val database = FirebaseDatabase.getInstance().getReference("product")
     override fun onCreateView(inflater: LayoutInflater,

@@ -14,8 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.atpic.ProductActivity;
 import com.android.atpic.R;
 import com.android.atpic.model.Product;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 
@@ -49,6 +51,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.CardView
         holder.name.setText(getProductList().get(position).getName());
         String priceToString = String.valueOf(getProductList().get(position).getPrice());
         holder.price.setText(priceToString);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ProductActivity.class);
+                intent.putExtra(ProductActivity.EXTRA_PARCEL, productList.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -59,9 +69,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.CardView
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
         private TextView price, name;
         private ImageView image;
+        private MaterialCardView cardView;
 
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.cardview);
             name = itemView.findViewById(R.id.tv_productName);
             price = itemView.findViewById(R.id.tv_productPrice);
             image = itemView.findViewById(R.id.iv_productImage);

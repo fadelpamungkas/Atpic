@@ -19,6 +19,8 @@ public class ProductActivity extends AppCompatActivity {
     LottieAnimationView cart;
     int flag = 0;
 
+    public final static String EXTRA_PARCEL = "extra_parcel";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

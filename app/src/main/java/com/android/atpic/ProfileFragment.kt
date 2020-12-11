@@ -64,19 +64,21 @@ internal class ProfileFragment : Fragment() {
         }
 
         btnAdd.setOnClickListener {
-            val dbProduct = database.child("product")
-            val id = dbProduct.push().key
-            product.id = id
-            product.name = "fadel"
-            product.desc = "desc"
-            product.id_user = authUsers!!.uid
+            val intent = Intent(activity , AddProductActivity::class.java)
+            startActivity(intent)
 
-            if (id != null) {
-                dbProduct.child(id).setValue(product)
-            }
-
-            Toast.makeText(activity, "Added product " + product.name + " Author: " + users.name, Toast.LENGTH_SHORT).show()
         }
         return view
     }
+
+//    val dbProduct = database.child("product")
+//    val id = dbProduct.push().key
+//    product.id = id
+//    product.name = "fadel"
+//    product.desc = "desc"
+//    product.id_user = authUsers!!.uid
+//
+//    if (id != null) {
+//        dbProduct.child(id).setValue(product)
+//    }
 }

@@ -27,7 +27,6 @@ internal class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val listener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 users = snapshot.getValue(Users::class.java)!!
@@ -41,14 +40,13 @@ internal class ProfileFragment : Fragment() {
             }
 
         }
-        database.child("users").child(authUsers!!.uid).addListenerForSingleValueEvent(listener)
+        database.child("users").child(authUsers!!.uid).addValueEventListener(listener)
     }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-
 
         val btnAdd = view.findViewById<Button>(R.id.btn_addProduct)
         val btnTopUp = view.findViewById<Button>(R.id.btn_topup)
@@ -57,11 +55,10 @@ internal class ProfileFragment : Fragment() {
         val btnEdit = view.findViewById<Button>(R.id.btn_edit)
 
         btnEdit.setOnClickListener{
-            activity?.let{
-                val intent = Intent (it, EditProfileActivity::class.java)
-                it.startActivity(intent)
-            }
+            val intent = Intent(activity , EditProfileActivity::class.java)
+            startActivity(intent)
         }
+
 
         btnAdd.setOnClickListener {
             val intent = Intent(activity , AddProductActivity::class.java)
@@ -71,8 +68,8 @@ internal class ProfileFragment : Fragment() {
 
         btnTopUp.setOnClickListener {
             val intent = Intent(activity , TopUpActivity::class.java)
+            intent.putExtra(TopUpActivity.EXTRA_USERS, users)
             startActivity(intent)
-
         }
         return view
     }

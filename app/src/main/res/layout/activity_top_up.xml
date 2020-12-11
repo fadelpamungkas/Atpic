@@ -47,14 +47,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:textSize="36dp"
-        android:hint="Rp0"
+        android:hint="Rp"
         android:inputType="number"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/enter_price" />
 
     <TextView
-        android:id="@+id/et_payment"
+        android:id="@+id/tv_payment"
         style="@style/TextStyle2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,25 +66,25 @@
         app:layout_constraintTop_toBottomOf="@id/et_topup" />
 
     <ImageView
-        android:id="@+id/iv_payment"
+        android:id="@+id/iv_transfer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/credit"
         android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_payment"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_payment"/>
 
     <TextView
-        android:id="@+id/tv_payment"
+        android:id="@+id/tv_transfer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Transfer Bank"
         android:textColor="@color/black"
         android:layout_marginTop="33dp"
         android:layout_marginStart="50dp"
-        app:layout_constraintStart_toStartOf="@id/iv_payment"
-        app:layout_constraintTop_toBottomOf="@id/et_payment"/>
+        app:layout_constraintStart_toStartOf="@id/iv_transfer"
+        app:layout_constraintTop_toBottomOf="@id/tv_payment"/>
 
     <ImageView
         android:id="@+id/iv_dana"
@@ -94,7 +94,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_payment"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_transfer"/>
 
     <TextView
         android:id="@+id/tv_dana"
@@ -105,7 +105,8 @@
         android:layout_marginTop="35dp"
         android:layout_marginStart="50dp"
         app:layout_constraintStart_toStartOf="@id/iv_dana"
-        app:layout_constraintTop_toBottomOf="@id/tv_payment"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_transfer"/>
+
 
     <ImageView
         android:id="@+id/iv_gopay"
@@ -128,17 +129,51 @@
         app:layout_constraintStart_toStartOf="@id/iv_gopay"
         app:layout_constraintTop_toBottomOf="@id/tv_dana"/>
 
-    <Button
-        android:id="@+id/btn_pay"
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pay"
-        android:textColor="@color/white"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_payment">
+        <RadioButton
+            android:id="@+id/rb_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="330dp"
+            app:layout_constraintStart_toEndOf="@id/tv_transfer"
+            app:layout_constraintTop_toBottomOf="@id/tv_payment" />
+
+        <RadioButton
+            android:id="@+id/rb_dana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="330dp"
+            app:layout_constraintStart_toEndOf="@id/tv_dana"
+            app:layout_constraintTop_toBottomOf="@id/tv_payment"/>
+
+        <RadioButton
+            android:id="@+id/rb_gopay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="330dp"
+            app:layout_constraintStart_toEndOf="@id/tv_gopay"
+            app:layout_constraintTop_toBottomOf="@id/tv_dana"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_topup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_bg_filled2"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:text="Top Up"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

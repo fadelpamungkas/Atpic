@@ -22,6 +22,7 @@
         <activity android:name=".ProductActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".AddProductActivity" />
+        <activity android:name=".TopUpActivity" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/SplashTheme">

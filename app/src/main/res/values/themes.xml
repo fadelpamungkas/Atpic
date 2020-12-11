@@ -40,4 +40,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/splash</item>
     </style>
 
+    <style name="Theme.Atpic.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Atpic.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Atpic.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

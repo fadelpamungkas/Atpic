@@ -126,4 +126,6 @@ Phasellus ipsum ipsum, euismod quis nibh vitae, iaculis rhoncus risus. Etiam sem
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="title_activity_add_product">AddProductActivity</string>
+    <string name="title_activity_success">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -9,6 +9,7 @@
     <string name="profile">Profile</string>
     <string name="bookmarks">Bookmarks</string>
     <string name="cart">Cart</string>
+    <string name="edit_profile">Edit Profile</string>
 
 
     <string name="dots_indicator">DotsIndicator</string>

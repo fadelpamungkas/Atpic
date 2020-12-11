@@ -27,8 +27,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     private Button btnEdit;
 
     public static  final String EXTRA_USERS = "extra_users";
-    public final int ALERT_DIALOG_CLOSE = 10;
-    public final int ALERT_DIALOG_DELETE = 10;
+
 
     private Users users;
     private String usersId;
@@ -57,7 +56,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Users users = snapshot.getValue(Users.class);
                 tvName.setText(users.getName());
-
+                edtEmail.setText(users.getEmail());
             }
 
             @Override
@@ -76,11 +75,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             edtEmail.setText(users.getEmail());
             edtPass.setText(users.getPassword());
         }
-
-        if (getSupportActionBar() != null){
-            getSupportActionBar().setTitle("Edit Data");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     @Override
@@ -96,30 +90,18 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
         boolean isEmptyFields = false;
 
-        if(TextUtils.isEmpty(email)){
-            isEmptyFields = true;
-            edtEmail.setError("Field ini tidak boleh kosong");
-        }
-
         if(TextUtils.isEmpty(pass)){
             isEmptyFields = true;
             edtPass.setError("Field ini tidak boleh kosong");
         }
 
         if(! isEmptyFields){
-            Toast.makeText(EditProfileActivity.this, "Edit Profile...", Toast.LENGTH_SHORT).show();
 
             users.setEmail(email);
             users.setPassword(pass);
 
-            DatabaseReference dbUsers = database.child("users");
-
-            dbUsers.child(usersId).setValue(users);
-
-
+            database.child(users.getId()).setValue(users);
+            finish();
         }
-        finish();
     }
-
-
 }

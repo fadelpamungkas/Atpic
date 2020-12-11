@@ -18,4 +18,5 @@
     <color name="splash">#010035</color>
     <color name="blue">#40BFFF</color>
     <color name="blue_profile">#223263</color>
+    <color name="transparant">#80000000</color>
 </resources>

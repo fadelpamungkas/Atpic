@@ -27,6 +27,7 @@ internal class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val listener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 users = snapshot.getValue(Users::class.java)!!

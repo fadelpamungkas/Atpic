@@ -54,13 +54,12 @@
             app:selectedDotColor="@color/default1"
             />
 
-
         <TextView
             android:id="@+id/product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextStyle2"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:text="Winter Town Urban Winter Lanscape"
             android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@id/dots_indicator"
@@ -102,10 +101,11 @@
 
         <LinearLayout
             android:id="@+id/authorLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
+            app:layout_constraintHorizontal_weight="0.33"
             app:layout_constraintTop_toBottomOf="@id/about"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/createdLayout">
@@ -119,6 +119,7 @@
             <TextView
                 android:id="@+id/product_author"
                 style="@style/TextStyle2"
+                android:gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fadel Pamungkas"/>
@@ -126,10 +127,11 @@
 
         <LinearLayout
             android:id="@+id/createdLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
+            app:layout_constraintHorizontal_weight="0.33"
             app:layout_constraintTop_toBottomOf="@id/about"
             app:layout_constraintStart_toEndOf="@id/authorLayout"
             app:layout_constraintEnd_toStartOf="@id/categoryLayout">
@@ -143,6 +145,7 @@
             <TextView
                 android:id="@+id/product_created"
                 style="@style/TextStyle2"
+                android:gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12 Desember"/>
@@ -150,10 +153,11 @@
 
         <LinearLayout
             android:id="@+id/categoryLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
+            app:layout_constraintHorizontal_weight="0.33"
             app:layout_constraintTop_toBottomOf="@id/about"
             app:layout_constraintStart_toEndOf="@id/createdLayout"
             app:layout_constraintEnd_toEndOf="parent">
@@ -166,6 +170,7 @@
             <TextView
                 android:id="@+id/product_category"
                 style="@style/TextStyle2"
+                android:gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Web Template"/>

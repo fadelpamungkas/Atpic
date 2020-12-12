@@ -13,14 +13,26 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/btnHome"
+        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_success"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_fileName="check-mark-success.json"
         app:lottie_loop="false"
-        app:lottie_speed="0.75" />
+        app:lottie_speed="0.5" />
+
+    <TextView
+        android:id="@+id/tv_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextStyle"
+        android:text="Payment Success"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/lav_success"
+        app:layout_constraintBottom_toTopOf="@id/btnHome"/>
 
     <com.royrodriguez.transitionbutton.TransitionButton
         android:id="@+id/btnHome"
@@ -34,7 +46,7 @@
         app:defaultColor="@color/default1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lav_success"
+        app:layout_constraintTop_toBottomOf="@+id/tv_success"
         app:layout_constraintBottom_toBottomOf="parent"
         app:loaderColor="@android:color/white" />
 

@@ -56,6 +56,7 @@ internal class ProfileFragment : Fragment() {
 
         btnEdit.setOnClickListener{
             val intent = Intent(activity , EditProfileActivity::class.java)
+            intent.putExtra(EditProfileActivity.EXTRA_USERS, users)
             startActivity(intent)
         }
 

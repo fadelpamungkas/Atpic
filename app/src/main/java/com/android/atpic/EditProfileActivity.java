@@ -73,17 +73,13 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }else{
             users = new Users();
         }
-
-        if(users != null){
-            edtEmail.setText(users.getEmail());
-            edtPass.setText(users.getPassword());
-        }
     }
 
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btn_editprofile){
             updateUsers();
+            finish();
         } else if(v.getId() == R.id.iconBack){
             finish();
         }
@@ -100,13 +96,12 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             edtPass.setError("Field ini tidak boleh kosong");
         }
 
-        if(! isEmptyFields){
+        if(!isEmptyFields){
 
             users.setEmail(email);
             users.setPassword(pass);
 
-            database.child(users.getId()).setValue(users);
-            finish();
+            database.setValue(users);
         }
     }
 }

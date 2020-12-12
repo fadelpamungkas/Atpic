@@ -3,7 +3,7 @@
     <string-array name="category">
         <item>Template</item>
         <item>Photo</item>
-        <item>Fonts</item>
+        <item>Font</item>
         <item>Icon</item>
     </string-array>
 </resources>

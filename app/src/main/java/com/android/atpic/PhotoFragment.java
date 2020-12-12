@@ -37,10 +37,11 @@ public class PhotoFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_photo, container, false);
 
-        recyclerView = view.findViewById(R.id.rv_template);
+        recyclerView = view.findViewById(R.id.rv_photo);
 
         database = FirebaseDatabase.getInstance().getReference();
         photoList = new ArrayList<>();
+        adapter = new ProductAdapter(getActivity());
 
         database.child("product").addValueEventListener(new ValueEventListener() {
             @Override

@@ -43,7 +43,7 @@ internal class CartFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                         users = snapshot.getValue(Users::class.java)!!
 
-                        if (users != null) {
+                        if (users != null && users.cart != null) {
                             val strs = users.cart.split(",").toTypedArray()
 
                             cartList.clear()

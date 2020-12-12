@@ -32,10 +32,11 @@ public class ProductActivity extends AppCompatActivity {
     DotIndicatorPager2Adapter adapter;
     LottieAnimationView cart;
     Product product;
+    Users productAuthor;
+    String authorName;
     TextView name, price, sales, author, created, category, description;
     Button btnBuy;
     int flag = 0;
-
     Users users;
     FirebaseAuth mAuth;
     DatabaseReference database;
@@ -66,17 +67,32 @@ public class ProductActivity extends AppCompatActivity {
         category = findViewById(R.id.product_category);
         description = findViewById(R.id.product_description);
 
-        name.setText(product.getName());
-        price.setText(String.valueOf("Rp" + product.getPrice()));
-        sales.setText(String.valueOf(product.getSold() + " sold"));
-        author.setText(product.getId_user());
-        created.setText(String.valueOf(product.getUpload_date()));
-        category.setText(product.getId_category());
-        description.setText(product.getDesc());
-
         adapter = new DotIndicatorPager2Adapter();
         viewPager.setAdapter(adapter);
         dotsIndicator.setViewPager2(viewPager);
+
+        database.child("users").child(product.getId_user()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                productAuthor = snapshot.getValue(Users.class);
+
+                if (productAuthor != null){
+                    author.setText(productAuthor.getName());
+                    name.setText(product.getName());
+                    price.setText(String.valueOf("Rp" + product.getPrice()));
+                    sales.setText(String.valueOf(product.getSold() + " sold"));
+                    created.setText(String.valueOf(product.getUpload_date()));
+                    category.setText(product.getId_category());
+                    description.setText(product.getDesc());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         database.child("users").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -110,16 +126,16 @@ public class ProductActivity extends AppCompatActivity {
 //                cart.playAnimation();
 
                 if (flag == 0) {
+                    flag = 1;
                     cart.setMinAndMaxProgress(0f, 0.8f); //Here, calculation is done on the basis of start and stop frame divided by the total number of frames
                     cart.setProgress(0);
                     cart.playAnimation();
-                    flag = 1;
                     Toast.makeText(ProductActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
 
                 } else {
+                    flag = 0;
                     cart.reverseAnimationSpeed();
                     cart.playAnimation();
-                    flag = 0;
                     Toast.makeText(ProductActivity.this, "Removed from cart", Toast.LENGTH_SHORT).show();
                     //---- Your code here------
                 }
@@ -127,5 +143,16 @@ public class ProductActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (flag == 1){
+            users.setCart(users.getCart() + "," + product.getId());
+
+            database.child("users").child(mAuth.getCurrentUser().getUid()).setValue(users);
+        }
     }
 }

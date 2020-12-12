@@ -63,6 +63,7 @@ internal class ProfileFragment : Fragment() {
 
         btnAdd.setOnClickListener {
             val intent = Intent(activity , AddProductActivity::class.java)
+            intent.putExtra(AddProductActivity.EXTRA_USERS, users)
             startActivity(intent)
 
         }

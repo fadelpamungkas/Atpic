@@ -41,6 +41,7 @@ public class TemplateFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance().getReference();
         templateList = new ArrayList<>();
+        adapter = new ProductAdapter(getActivity());
 
         database.child("product").addValueEventListener(new ValueEventListener() {
             @Override

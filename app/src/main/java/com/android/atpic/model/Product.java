@@ -6,9 +6,8 @@ import android.os.Parcelable;
 import java.util.Date;
 
 public class Product implements Parcelable {
-    private String id, name, desc, id_photo, id_user, id_category, id_transaction;
+    private String id, name, desc, id_photo, id_user, id_category, id_transaction, upload_date;
     private long sold, price;
-    private Date upload_date;
 
     public Product(){
     }
@@ -85,11 +84,11 @@ public class Product implements Parcelable {
         this.price = price;
     }
 
-    public Date getUpload_date() {
+    public String getUpload_date() {
         return upload_date;
     }
 
-    public void setUpload_date(Date upload_date) {
+    public void setUpload_date(String upload_date) {
         this.upload_date = upload_date;
     }
 
@@ -101,6 +100,7 @@ public class Product implements Parcelable {
         id_user = in.readString();
         id_category = in.readString();
         id_transaction = in.readString();
+        upload_date = in.readString();
         sold = in.readLong();
         price = in.readLong();
     }
@@ -114,6 +114,7 @@ public class Product implements Parcelable {
         dest.writeString(id_user);
         dest.writeString(id_category);
         dest.writeString(id_transaction);
+        dest.writeString(upload_date);
         dest.writeLong(sold);
         dest.writeLong(price);
     }

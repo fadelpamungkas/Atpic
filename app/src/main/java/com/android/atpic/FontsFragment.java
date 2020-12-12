@@ -41,6 +41,7 @@ public class FontsFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance().getReference();
         fontList = new ArrayList<>();
+        adapter = new ProductAdapter(getActivity());
 
         database.child("product").addValueEventListener(new ValueEventListener() {
             @Override

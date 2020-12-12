@@ -41,6 +41,7 @@ public class IconsFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance().getReference();
         iconList = new ArrayList<>();
+        adapter = new ProductAdapter(getActivity());
 
         database.child("product").addValueEventListener(new ValueEventListener() {
             @Override

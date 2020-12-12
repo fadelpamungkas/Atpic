@@ -33,14 +33,16 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     private String usersId;
 
     DatabaseReference database;
+    FirebaseAuth mAuth;
+    FirebaseUser authUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser authUsers = mAuth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
+        authUsers = mAuth.getCurrentUser();
 
         tvName = findViewById(R.id.name);
         edtEmail = findViewById(R.id.edt_email);

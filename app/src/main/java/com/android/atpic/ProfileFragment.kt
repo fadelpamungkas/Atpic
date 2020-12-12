@@ -1,5 +1,6 @@
 package com.android.atpic
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.atpic.model.Product
 import com.android.atpic.model.Users
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_profile.*
+
 
 internal class ProfileFragment : Fragment() {
     var product : Product = Product()
@@ -43,6 +45,7 @@ internal class ProfileFragment : Fragment() {
         database.child("users").child(authUsers!!.uid).addValueEventListener(listener)
     }
 
+    @SuppressLint("CutPasteId")
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -53,22 +56,29 @@ internal class ProfileFragment : Fragment() {
         val name = view.findViewById<TextView>(R.id.tv_profileName)
         val credit = view.findViewById<TextView>(R.id.tv_credit)
         val btnEdit = view.findViewById<Button>(R.id.btn_edit)
+        val btnSignOut = view.findViewById<Button>(R.id.btn_signout)
 
         btnEdit.setOnClickListener{
-            val intent = Intent(activity , EditProfileActivity::class.java)
+            val intent = Intent(activity, EditProfileActivity::class.java)
             intent.putExtra(EditProfileActivity.EXTRA_USERS, users)
+            startActivity(intent)
+        }
+
+        btnSignOut.setOnClickListener{
+            mAuth.signOut()
+            val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
         }
 
 
         btnAdd.setOnClickListener {
-            val intent = Intent(activity , AddProductActivity::class.java)
+            val intent = Intent(activity, AddProductActivity::class.java)
             startActivity(intent)
 
         }
 
         btnTopUp.setOnClickListener {
-            val intent = Intent(activity , TopUpActivity::class.java)
+            val intent = Intent(activity, TopUpActivity::class.java)
             intent.putExtra(TopUpActivity.EXTRA_USERS, users)
             startActivity(intent)
         }

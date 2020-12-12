@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class TopUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etTopUp;
-    private Button btnTopUp;
+    private Button btnTopUp, btnBack;
 
     public static  final String EXTRA_USERS = "extra_users";
 
@@ -36,6 +36,9 @@ public class TopUpActivity extends AppCompatActivity implements View.OnClickList
 
         etTopUp = findViewById(R.id.et_topup);
         btnTopUp = findViewById(R.id.btn_topup);
+        btnBack = findViewById(R.id.iconBack);
+
+        btnBack.setOnClickListener(this);
         btnTopUp.setOnClickListener(this);
 
         users = getIntent().getParcelableExtra(EXTRA_USERS);
@@ -47,6 +50,8 @@ public class TopUpActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if(v.getId() == R.id.btn_topup){
             topUp();
+            finish();
+        } else if(v.getId() == R.id.iconBack){
             finish();
         }
     }

@@ -24,7 +24,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
     private EditText edtEmail, edtPass;
     private TextView tvName;
-    private Button btnEdit;
+    private Button btnEdit, btnBack;
 
     public static  final String EXTRA_USERS = "extra_users";
 
@@ -46,7 +46,10 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         edtEmail = findViewById(R.id.edt_email);
         edtPass = findViewById(R.id.edt_pass);
         btnEdit = findViewById(R.id.btn_editprofile);
+        btnBack = findViewById(R.id.iconBack);
+
         btnEdit.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
         users = getIntent().getParcelableExtra(EXTRA_USERS);
 
@@ -81,6 +84,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         if(v.getId() == R.id.btn_editprofile){
             updateUsers();
+        } else if(v.getId() == R.id.iconBack){
+            finish();
         }
     }
 

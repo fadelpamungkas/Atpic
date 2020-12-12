@@ -24,7 +24,6 @@ import com.royrodriguez.transitionbutton.utils.WindowUtils;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private TransitionButton btnRegister;
-    private Button btnLogin;
     private EditText etName, etEmail, etPassword;
 
     private Users users;
@@ -47,12 +46,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
         btnRegister = findViewById(R.id.register_button);
-        btnLogin = findViewById(R.id.btnLogin);
 
         users = new Users();
 
         btnRegister.setOnClickListener(this);
-        btnLogin.setOnClickListener(this);
     }
 
     private void saveUser(){
@@ -136,10 +133,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             } else {
                 btnRegister.stopAnimation(TransitionButton.StopAnimationStyle.SHAKE, null);
             }
-        } else if(view.getId() == R.id.btnLogin){
-            finish();
         } else{
 
         }
+    }
+
+    public void btnLogin(View view) {
+        finish();
     }
 }

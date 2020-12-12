@@ -22,7 +22,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     TextView name, email, credit, subtotal, taxes, total;
     RecyclerView recyclerView;
-    Button btnPay;
+    Button btnPay, btnBack;
 
     ArrayList<Product> productList;
     Product product;
@@ -50,6 +50,7 @@ public class PaymentActivity extends AppCompatActivity {
         taxes = findViewById(R.id.tv_taxes);
         total = findViewById(R.id.tv_total);
         btnPay = findViewById(R.id.btn_pay);
+        btnBack = findViewById(R.id.iconBack);
 
         adapter.setProductList(productList);
         price = 0;
@@ -71,6 +72,13 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(PaymentActivity.this, SuccessActivity.class));
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

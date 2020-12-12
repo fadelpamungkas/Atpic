@@ -74,19 +74,23 @@
         android:id="@+id/tv_dont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
         android:text="Already have an account?"
         android:textColor="@color/colorLightFont"
         app:layout_constraintTop_toBottomOf="@id/register_button"
         app:layout_constraintEnd_toStartOf="@id/btnLogin"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <TextView
         android:id="@+id/btnLogin"
         style="@style/TextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:onClick="btnLogin"
         android:text="Login"
         android:textColor="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"

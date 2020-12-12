@@ -18,7 +18,7 @@ import com.ramotion.directselect.DSDefaultPickerBox;
 public class AddProductActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText edtName, edtPrice, edtDesc;
-    private Button btnAdd;
+    private Button btnAdd, btnBack;
     private DSDefaultPickerBox dsCategory;
 
     private Product product;
@@ -36,9 +36,11 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         edtName = findViewById(R.id.et_name);
         edtPrice = findViewById(R.id.et_price);
         edtDesc = findViewById(R.id.et_desc);
+        btnBack = findViewById(R.id.iconBack);
 
         btnAdd = findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
         product = new Product();
     }
@@ -47,6 +49,8 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         if(v.getId() == R.id.btn_add){
             addProduct();
+        } else if( v.getId() == R.id.iconBack){
+            finish();
         }
     }
 

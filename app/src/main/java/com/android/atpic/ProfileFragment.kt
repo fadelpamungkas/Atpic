@@ -53,13 +53,19 @@ internal class ProfileFragment : Fragment() {
         val name = view.findViewById<TextView>(R.id.tv_profileName)
         val credit = view.findViewById<TextView>(R.id.tv_credit)
         val btnEdit = view.findViewById<Button>(R.id.btn_edit)
+        val btnLogout = view.findViewById<Button>(R.id.btn_signout)
+
+        btnLogout.setOnClickListener{
+            mAuth.signOut()
+            val intent = Intent(activity , LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         btnEdit.setOnClickListener{
             val intent = Intent(activity , EditProfileActivity::class.java)
             intent.putExtra(EditProfileActivity.EXTRA_USERS, users)
             startActivity(intent)
         }
-
 
         btnAdd.setOnClickListener {
             val intent = Intent(activity , AddProductActivity::class.java)

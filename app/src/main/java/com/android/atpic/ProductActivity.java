@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.android.atpic.adapter.DotIndicatorAdapter;
 import com.android.atpic.adapter.DotIndicatorPager2Adapter;
 import com.android.atpic.model.Product;
 import com.android.atpic.model.Users;
@@ -29,7 +30,7 @@ public class ProductActivity extends AppCompatActivity {
 
     DotsIndicator dotsIndicator;
     ViewPager2 viewPager;
-    DotIndicatorPager2Adapter adapter;
+    DotIndicatorAdapter adapter;
     LottieAnimationView cart;
     Product product;
     Users productAuthor;
@@ -67,7 +68,11 @@ public class ProductActivity extends AppCompatActivity {
         category = findViewById(R.id.product_category);
         description = findViewById(R.id.product_description);
 
-        adapter = new DotIndicatorPager2Adapter();
+        String photoURL = CustomClass.removeLastChar(product.getPhotoURL());
+        String[] strs = photoURL.split(",");
+
+        adapter = new DotIndicatorAdapter(this);
+        adapter.setStrs(strs);
         viewPager.setAdapter(adapter);
         dotsIndicator.setViewPager2(viewPager);
 

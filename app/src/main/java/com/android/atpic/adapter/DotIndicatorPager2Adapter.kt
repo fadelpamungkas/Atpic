@@ -16,6 +16,6 @@ class DotIndicatorPager2Adapter : RecyclerView.Adapter<ViewHolder>() {
   override fun getItemCount() = 10
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    // Empty
+
   }
 }

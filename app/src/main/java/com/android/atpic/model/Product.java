@@ -3,10 +3,9 @@ package com.android.atpic.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
 
 public class Product implements Parcelable {
-    private String id, name, desc, id_photo, id_user, id_category, id_transaction, upload_date;
+    private String id, name, desc, id_user, id_category, upload_date, photoURL;
     private long sold, price;
 
     public Product(){
@@ -36,14 +35,6 @@ public class Product implements Parcelable {
         this.desc = desc;
     }
 
-    public String getId_photo() {
-        return id_photo;
-    }
-
-    public void setId_photo(String id_photo) {
-        this.id_photo = id_photo;
-    }
-
     public String getId_user() {
         return id_user;
     }
@@ -60,12 +51,20 @@ public class Product implements Parcelable {
         this.id_category = id_category;
     }
 
-    public String getId_transaction() {
-        return id_transaction;
+    public String getUpload_date() {
+        return upload_date;
     }
 
-    public void setId_transaction(String id_transaction) {
-        this.id_transaction = id_transaction;
+    public void setUpload_date(String upload_date) {
+        this.upload_date = upload_date;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 
     public long getSold() {
@@ -84,23 +83,14 @@ public class Product implements Parcelable {
         this.price = price;
     }
 
-    public String getUpload_date() {
-        return upload_date;
-    }
-
-    public void setUpload_date(String upload_date) {
-        this.upload_date = upload_date;
-    }
-
     protected Product(Parcel in) {
         id = in.readString();
         name = in.readString();
         desc = in.readString();
-        id_photo = in.readString();
         id_user = in.readString();
         id_category = in.readString();
-        id_transaction = in.readString();
         upload_date = in.readString();
+        photoURL = in.readString();
         sold = in.readLong();
         price = in.readLong();
     }
@@ -110,11 +100,10 @@ public class Product implements Parcelable {
         dest.writeString(id);
         dest.writeString(name);
         dest.writeString(desc);
-        dest.writeString(id_photo);
         dest.writeString(id_user);
         dest.writeString(id_category);
-        dest.writeString(id_transaction);
         dest.writeString(upload_date);
+        dest.writeString(photoURL);
         dest.writeLong(sold);
         dest.writeLong(price);
     }

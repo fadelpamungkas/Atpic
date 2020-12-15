@@ -14,9 +14,11 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.atpic.CustomClass;
 import com.android.atpic.ProductActivity;
 import com.android.atpic.R;
 import com.android.atpic.model.Product;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -48,6 +50,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CardViewViewHo
         holder.name.setText(getProductList().get(position).getName());
         String priceToString = String.valueOf(getProductList().get(position).getPrice());
         holder.price.setText(priceToString);
+        String photoURL = CustomClass.removeLastChar(getProductList().get(position).getPhotoURL());
+        String[] strs = photoURL.split(",");
+        Glide.with(context)
+                .load(strs[0])
+                .into(holder.image);
         holder.landscapeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

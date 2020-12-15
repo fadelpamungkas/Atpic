@@ -1,7 +1,9 @@
 package com.android.atpic
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +16,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 
 internal class HomeFragment : Fragment() {
     val productList = ArrayList<Product>()
     val database = FirebaseDatabase.getInstance().getReference("product")
+    val storage = FirebaseStorage.getInstance().getReference()
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -40,6 +45,24 @@ internal class HomeFragment : Fragment() {
                 for (data in snapshot.children) {
                     val product = data.getValue(Product::class.java)
                     if (product != null) {
+//                        val strs = product.photoFilename.split(",").toTypedArray()
+//                        for (data in strs) {
+//                            Log.d("HomeFragment", "image/" + product.id + "/" + data)
+//                            val localFile = File.createTempFile(data, "jpg")
+//                            storage.child("image/" + product.id + "/" + data).getFile(localFile).addOnSuccessListener {
+////                                product.photoUri.add(Uri.fromFile())
+//                                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+//                                product.photoUri.add(bitmap)
+//                                Log.d("HomeFragment", "downloading uri to product")
+//                            }.addOnFailureListener {
+//                                Log.d("HomeFragment", "error downloading uri to product")
+//                            }
+//                            storage.child("image/" + product.id + "/" + data).downloadUrl.addOnSuccessListener(OnSuccessListener {
+//                                Log.d("HomeFragment", "downloading uri to product")
+//                                product.photoUri.add(it)
+//                                Log.d("HomeFragment", "uri downloaded to product")
+//                            })
+//                        }
                         productList.add(product)
                         println(product)
                     }

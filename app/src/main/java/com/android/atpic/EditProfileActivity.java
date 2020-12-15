@@ -12,6 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.atpic.model.Users;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -99,11 +103,20 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
 
         if(!isEmptyFields){
-
             users.setEmail(email);
             users.setPassword(pass);
 
+            AuthCredential credential = EmailAuthProvider.getCredential(users.getEmail(), users.getPassword());
+            authUsers.reauthenticate(credential)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            authUsers.updateEmail(email);
+                            authUsers.updatePassword(pass);
+                        }
+                    });
             database.setValue(users);
+            Toast.makeText(EditProfileActivity.this, "Edit Profile was Successful", Toast.LENGTH_SHORT).show();
         }
     }
 }

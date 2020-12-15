@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.android.atpic.model.Users;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,5 +63,6 @@ public class TopUpActivity extends AppCompatActivity implements View.OnClickList
 
         users.setCredit(credit);
         db.child(users.getId()).setValue(users);
+        Toast.makeText(TopUpActivity.this, "Top Up was Successful", Toast.LENGTH_SHORT).show();
     }
 }

@@ -18,6 +18,7 @@ import com.android.atpic.CustomClass;
 import com.android.atpic.ProductActivity;
 import com.android.atpic.R;
 import com.android.atpic.model.Product;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 
@@ -29,6 +30,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.CardView
 
     public ProductAdapter(Context context){
         this.context = context;
+    }
+
+    public ProductAdapter(FirebaseRecyclerOptions<Product> options) {
     }
 
     public ArrayList<Product> getProductList() {

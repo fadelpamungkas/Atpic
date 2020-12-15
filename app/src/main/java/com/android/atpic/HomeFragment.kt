@@ -35,6 +35,7 @@ internal class HomeFragment : Fragment() {
         val btnPhoto= view.findViewById<Button>(R.id.btnPhoto)
         val btnFonts = view.findViewById<Button>(R.id.btnFonts)
         val btnIcon = view.findViewById<Button>(R.id.btnIcon)
+        val btnSearch = view.findViewById<Button>(R.id.search_button)
 
         val adapter = ProductAdapter(context)
 
@@ -76,6 +77,11 @@ internal class HomeFragment : Fragment() {
             }
 
         })
+
+        btnSearch.setOnClickListener {
+            val intent = Intent(activity, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         btnTemplate.setOnClickListener {
             val intent = Intent(activity, ExploreActivity::class.java)

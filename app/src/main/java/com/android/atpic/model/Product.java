@@ -83,7 +83,7 @@ public class Product implements Parcelable {
         this.price = price;
     }
 
-    protected Product(Parcel in) {
+    public Product(Parcel in) {
         id = in.readString();
         name = in.readString();
         desc = in.readString();

@@ -129,4 +129,5 @@ Phasellus ipsum ipsum, euismod quis nibh vitae, iaculis rhoncus risus. Etiam sem
     <string name="title_activity_add_product">AddProductActivity</string>
     <string name="title_activity_success">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="my_cart">My Cart</string>
 </resources>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.atpic.R
@@ -18,6 +19,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_cart.*
 
 internal class CartFragment : Fragment() {
 
@@ -33,14 +35,15 @@ internal class CartFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_cart, container, false)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_cart)
         val btnCheckout = view.findViewById<Button>(R.id.btn_checkout)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_cart)
+        val imageCart = view.findViewById<ImageView>(R.id.iv_undrawCart)
 
-        val adapter = CartAdapter(this.context)
+        val adapter = CartAdapter(activity)
 
         database.child("users").child(authUsers!!.uid).addListenerForSingleValueEvent(
-            object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
+                object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
                         users = snapshot.getValue(Users::class.java)!!
 
                         if (users != null && users.cart != null) {
@@ -49,22 +52,26 @@ internal class CartFragment : Fragment() {
                             cartList.clear()
                             for (data in strs) {
                                 database.child("product").child(data).addValueEventListener(
-                                    object : ValueEventListener {
-                                        override fun onDataChange(snapshot: DataSnapshot) {
-                                            val product = snapshot.getValue(Product::class.java)
+                                        object : ValueEventListener {
+                                            override fun onDataChange(snapshot: DataSnapshot) {
+                                                val product = snapshot.getValue(Product::class.java)
 
-                                            if (product != null){
-                                                cartList.add(product)
+                                                if (product != null){
+                                                    cartList.add(product)
+                                                }
+
+                                                recyclerView.visibility = View.VISIBLE
+                                                btnCheckout.visibility = View.VISIBLE
+                                                imageCart.visibility = View.INVISIBLE
+
+                                                adapter.productList = cartList
+                                                recyclerView.adapter = adapter
                                             }
 
-                                            adapter.productList = cartList
-                                            recyclerView.adapter = adapter
+                                            override fun onCancelled(error: DatabaseError) {
+                                                TODO("Not yet implemented")
+                                            }
                                         }
-
-                                        override fun onCancelled(error: DatabaseError) {
-                                            TODO("Not yet implemented")
-                                        }
-                                    }
                                 )
 
                             }
@@ -73,11 +80,11 @@ internal class CartFragment : Fragment() {
 
                     }
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
 
-            }
+                }
 
         )
 

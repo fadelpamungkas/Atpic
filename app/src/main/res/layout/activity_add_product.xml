@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".AddProductActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -46,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:id="@+id/productimage"
+            android:id="@+id/productImage"
             style="@style/TextStyle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,23 +58,33 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/productimagedesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add upto 3 images. First image is your product's
-    \n cover image that will be highlighted everywhere"
-            android:textColor="#9098B1"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@id/productimage"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <LinearLayout
-            android:id="@+id/imageLayout"
+            android:id="@+id/productImageDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/productimagedesc"
+            android:text="Add images that represent your product. First image will be your product's cover image."
+            android:textColor="#9098B1"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/productImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <HorizontalScrollView
+            android:id="@+id/scrollImage"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/productImageDesc"
+            app:layout_constraintStart_toEndOf="@id/btnImage"
+            app:layout_constraintEnd_toEndOf="parent">
+            <LinearLayout
+                android:id="@+id/imageLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
 
         <Button
             android:id="@+id/btnImage"
@@ -84,30 +95,31 @@
             android:text="Choose"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@id/imageLayout"
+            app:layout_constraintEnd_toStartOf="@id/scrollImage"
+            app:layout_constraintTop_toBottomOf="@id/productImageDesc"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/productdetail"
+            android:id="@+id/productDetail"
             style="@style/TextStyle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:text="Enter Product Details"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             app:layout_constraintTop_toBottomOf="@id/btnImage"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/categorydesc"
+            android:id="@+id/categoryDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select product category"
+            android:text="Product category"
             android:textColor="#9098B1"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/productdetail"/>
+            app:layout_constraintTop_toBottomOf="@id/productDetail"/>
 
         <Spinner
             android:id="@+id/category"
@@ -117,12 +129,12 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/rounded_background1"
-            app:layout_constraintTop_toBottomOf="@id/categorydesc"
+            app:layout_constraintTop_toBottomOf="@id/categoryDesc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/namedesc"
+            android:id="@+id/nameDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Product name"
@@ -143,12 +155,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/namedesc"
+            app:layout_constraintTop_toBottomOf="@id/nameDesc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/pricedesc"
+            android:id="@+id/priceDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price"
@@ -169,12 +181,12 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:inputType="number"
-            app:layout_constraintTop_toBottomOf="@id/pricedesc"
+            app:layout_constraintTop_toBottomOf="@id/priceDesc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/descrptiondesc"
+            android:id="@+id/descrptionDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Product Description"
@@ -193,11 +205,11 @@
             android:fontFamily="@font/poppins"
             android:inputType="textMultiLine"
             android:gravity="start|top"
-            android:height="120dp"
+            android:height="100dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/descrptiondesc"
+            app:layout_constraintTop_toBottomOf="@id/descrptionDesc"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -211,7 +223,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_bg_filled2"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             app:layout_constraintTop_toBottomOf="@id/et_desc"
             app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.atpic.adapter.ProductAdapter;
 import com.android.atpic.model.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,11 +28,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements View.OnKeyListener {
 
     DatabaseReference db;
-    private ListView listData;
+    private RecyclerView listData;
     private AutoCompleteTextView txtSearch;
+    ProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +41,9 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         db = FirebaseDatabase.getInstance().getReference("product");
-        listData=(ListView)findViewById(R.id.list_view) ;
-        txtSearch=(AutoCompleteTextView) findViewById(R.id.txtSearch);
+        listData = findViewById(R.id.rv_search);
+        txtSearch = findViewById(R.id.txtSearch);
+        txtSearch.setOnKeyListener(this);
 
         ValueEventListener event = new ValueEventListener() {
             @Override
@@ -66,7 +71,7 @@ public class SearchActivity extends AppCompatActivity {
             txtSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String name=txtSearch.getText().toString();
+                    String name = txtSearch.getText().toString();
                     searchProduct(name);
                 }
             });
@@ -76,23 +81,24 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void searchProduct(String name) {
-        Query query=db.orderByChild("name").equalTo(name);
+        Query query = db.orderByChild("name").equalTo(name);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    ArrayList<String> listProducts = new ArrayList<>();
-                    for(DataSnapshot ds:snapshot.getChildren()){
-                        Product product=new Product();
-                        product.setId_category(ds.child("id_category").getValue(String.class));
-                        product.setName(ds.child("name").getValue(String.class));
-                        product.setPrice(ds.child("price").getValue(Long.class));
+                    ArrayList<Product> listProducts = new ArrayList<>();
 
-                        listProducts.add(product.getId_category() + "\n" + product.getName() + "\n" + (product.getPrice()));
+                    for(DataSnapshot ds:snapshot.getChildren()){
+                        Product product = ds.getValue(Product.class);
+                        listProducts.add(product);
+                        Log.d("SearchActivity", "product found");
                     }
-                    ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,listProducts);
+
+                    adapter = new ProductAdapter(SearchActivity.this);
+                    adapter.setProductList(listProducts);
                     listData.setAdapter(adapter);
-                }else{
+                    Log.d("SearchActivity", "binding adapter");
+                } else {
                     Toast.makeText(SearchActivity.this, "No product found", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -102,5 +108,14 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onKey(View view, int i, KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+            searchProduct(txtSearch.getText().toString());
+            return true;
+        }
+        return false;
     }
 }

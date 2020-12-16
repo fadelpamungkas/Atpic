@@ -2,13 +2,17 @@ package com.android.atpic
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.android.atpic.adapter.ProductAdapter
 import com.android.atpic.model.Product
 import com.android.atpic.model.Users
 import com.google.firebase.auth.FirebaseAuth
@@ -23,24 +27,60 @@ internal class ProfileFragment : Fragment() {
     var users : Users = Users()
     val mAuth = FirebaseAuth.getInstance()
     val authUsers = mAuth.currentUser
+    val myProduct = ArrayList<Product>()
     val database = FirebaseDatabase.getInstance().getReference()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val listener = object : ValueEventListener{
+
+        val adapter = ProductAdapter(activity)
+
+        database.child("users").child(authUsers!!.uid).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 users = snapshot.getValue(Users::class.java)!!
+                myProduct.clear()
 
                 tv_profileName.text = users.name
-                tv_credit.text = "Rp" + users.credit.toString()
+                val credit = "Rp" + users.credit.toString()
+                tv_credit.text = credit
+
+                database.child("product").addValueEventListener(
+                        object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                for(data in snapshot.children){
+                                    val product = data.getValue(Product::class.java)
+                                    if (product != null && product.id_user == users.id){
+                                        myProduct.add(product)
+                                        Log.d("ProfileFragment", "inserting product to myProduct")
+                                    }
+                                    if (myProduct.isNotEmpty()){
+                                        adapter.productList = myProduct
+                                        rv_myProduct.adapter = adapter
+                                        rv_myProduct.visibility = View.VISIBLE
+                                        iv_undrawAddProduct.visibility = View.INVISIBLE
+                                        Log.d("ProfileFragment", "myProduct isnotempty")
+                                    }
+
+                                }
+
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
+                            }
+
+                        }
+
+                )
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         }
-        database.child("users").child(authUsers!!.uid).addValueEventListener(listener)
+        )
+
+
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -50,10 +90,10 @@ internal class ProfileFragment : Fragment() {
 
         val btnAdd = view.findViewById<Button>(R.id.btn_addProduct)
         val btnTopUp = view.findViewById<Button>(R.id.btn_topup)
-        val name = view.findViewById<TextView>(R.id.tv_profileName)
-        val credit = view.findViewById<TextView>(R.id.tv_credit)
         val btnEdit = view.findViewById<Button>(R.id.btn_edit)
         val btnLogout = view.findViewById<Button>(R.id.btn_signout)
+        val imageAddProduct = view.findViewById<ImageView>(R.id.iv_undrawAddProduct)
+
 
         btnLogout.setOnClickListener{
             mAuth.signOut()
@@ -71,7 +111,12 @@ internal class ProfileFragment : Fragment() {
             val intent = Intent(activity , AddProductActivity::class.java)
             intent.putExtra(AddProductActivity.EXTRA_USERS, users)
             startActivity(intent)
+        }
 
+        imageAddProduct.setOnClickListener {
+            val intent = Intent(activity , AddProductActivity::class.java)
+            intent.putExtra(AddProductActivity.EXTRA_USERS, users)
+            startActivity(intent)
         }
 
         btnTopUp.setOnClickListener {
@@ -79,17 +124,8 @@ internal class ProfileFragment : Fragment() {
             intent.putExtra(TopUpActivity.EXTRA_USERS, users)
             startActivity(intent)
         }
+
         return view
     }
 
-//    val dbProduct = database.child("product")
-//    val id = dbProduct.push().key
-//    product.id = id
-//    product.name = "fadel"
-//    product.desc = "desc"
-//    product.id_user = authUsers!!.uid
-//
-//    if (id != null) {
-//        dbProduct.child(id).setValue(product)
-//    }
 }

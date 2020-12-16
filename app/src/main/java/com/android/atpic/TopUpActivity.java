@@ -63,6 +63,6 @@ public class TopUpActivity extends AppCompatActivity implements View.OnClickList
 
         users.setCredit(credit);
         db.child(users.getId()).setValue(users);
-        Toast.makeText(TopUpActivity.this, "Top Up was Successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(TopUpActivity.this, "Top Up Success", Toast.LENGTH_SHORT).show();
     }
 }

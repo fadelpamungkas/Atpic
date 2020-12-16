@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.File
 
 
@@ -45,6 +46,7 @@ internal class HomeFragment : Fragment() {
 
                 for (data in snapshot.children) {
                     val product = data.getValue(Product::class.java)
+
                     if (product != null) {
 //                        val strs = product.photoFilename.split(",").toTypedArray()
 //                        for (data in strs) {
@@ -67,6 +69,7 @@ internal class HomeFragment : Fragment() {
                         productList.add(product)
                         println(product)
                     }
+
                     adapter.productList = productList
                     recyclerView.adapter = adapter
                 }

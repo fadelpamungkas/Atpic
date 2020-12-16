@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.android.atpic.model.Product;
+import com.android.atpic.model.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -19,21 +21,47 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class SuccessActivity extends AppCompatActivity {
 
+    public final static String EXTRA_PRODUCT= "extra_product";
+    public final static String EXTRA_USERS= "extra_users";
+
     LottieAnimationView success;
     TransitionButton btnHome;
+    TextView tvProduct, tvEmail;
+
+    ArrayList<Product> productList;
+    Users users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
 
+        productList = new ArrayList<>();
+        users = new Users();
+        productList = getIntent().getParcelableArrayListExtra(EXTRA_PRODUCT);
+        users = getIntent().getParcelableExtra(EXTRA_USERS);
 
         btnHome = findViewById(R.id.btnHome);
         success = findViewById(R.id.lav_success);
+        tvProduct = findViewById(R.id.tv_productName);
+        tvEmail = findViewById(R.id.tv_userEmail);
+
+        String name = "";
+
+        for (Product p : productList){
+            name += p.getName() + ",";
+        }
+
+        tvProduct.setText(CustomClass.removeLastChar(name) + " has been sent to");
+        tvEmail.setText(users.getEmail());
+
         success.playAnimation();
 
         btnHome.setOnClickListener(new View.OnClickListener() {

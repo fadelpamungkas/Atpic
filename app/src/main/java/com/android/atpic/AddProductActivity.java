@@ -19,6 +19,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -48,16 +50,16 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
     public static final int IMAGE_REQUESTS = 1;
     private static final String TAG = "AddProductActivity";
 
+    private LinearLayout imageLayout;
     private EditText edtName, edtPrice, edtDesc;
     private Button btnAdd, btnBack, btnImage;
-    private LinearLayout imageLayout;
     private Spinner spinCategory;
     private Product product;
 
     Uri imageUri;
     ArrayList<Uri> imageUriList;
     String imageEncoded;
-    String photoURL;
+    String photoURL, filename;
     List<String> imagesEncodedList;
     String[] array;
     int category;
@@ -235,7 +237,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                             cursor.close();
 
                         }
-                        Log.v(TAG, "Selected Images" + imageUriList.size());
+                        Log.v(TAG, "Selected Images: " + imageUriList.size());
                     }
                 }
             } else {
@@ -243,6 +245,20 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
             }
         } catch (Exception e) {
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+        }
+
+        filename = "";
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        for (Uri uri : imageUriList){
+            ImageView v = new ImageView(this);
+            v.setImageURI(uri);
+            v.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            imageLayout.addView(v, layoutParams);
+            Log.d("AddProductActivity", "filename: " + filename);
         }
 
         super.onActivityResult(requestCode, resultCode, data);

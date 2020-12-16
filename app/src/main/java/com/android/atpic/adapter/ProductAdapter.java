@@ -32,9 +32,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.CardView
         this.context = context;
     }
 
-    public ProductAdapter(FirebaseRecyclerOptions<Product> options) {
-    }
-
     public ArrayList<Product> getProductList() {
         return productList;
     }

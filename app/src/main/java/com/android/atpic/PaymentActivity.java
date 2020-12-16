@@ -105,7 +105,10 @@ public class PaymentActivity extends AppCompatActivity {
                     }
                     users.setCredit(users.getCredit() - (price+10000));
                     database.child("users").child(users.getId()).setValue(users);
-                    startActivity(new Intent(PaymentActivity.this, SuccessActivity.class));
+                    Intent intent = new Intent(PaymentActivity.this, SuccessActivity.class);
+                    intent.putParcelableArrayListExtra(PaymentActivity.EXTRA_PRODUCT, productList);
+                    intent.putExtra(PaymentActivity.EXTRA_USERS, users);
+                    startActivity(intent);
                 }
 
             }

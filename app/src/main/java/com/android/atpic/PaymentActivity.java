@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.android.atpic.adapter.CartAdapter;
 import com.android.atpic.model.Product;
+import com.android.atpic.model.Transaction;
 import com.android.atpic.model.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +34,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     ArrayList<Product> productList;
     Product product;
+    Transaction transaction;
     Users users;
     CartAdapter adapter;
     long price;

@@ -6,38 +6,39 @@ import android.os.Parcelable;
 import java.util.Date;
 
 public class Transaction implements Parcelable {
-    private int id, id_user, id_product, total;
+    private String id, id_user, id_product;
+    private Long total;
     private Date transaction_date;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId_user() {
+    public String getId_user() {
         return id_user;
     }
 
-    public void setId_user(int id_user) {
+    public void setId_user(String id_user) {
         this.id_user = id_user;
     }
 
-    public int getId_product() {
+    public String getId_product() {
         return id_product;
     }
 
-    public void setId_product(int id_product) {
+    public void setId_product(String id_product) {
         this.id_product = id_product;
     }
 
-    public int getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 
@@ -50,18 +51,18 @@ public class Transaction implements Parcelable {
     }
 
     protected Transaction(Parcel in) {
-        id = in.readInt();
-        id_user = in.readInt();
-        id_product = in.readInt();
-        total = in.readInt();
+        id = in.readString();
+        id_user = in.readString();
+        id_product = in.readString();
+        total = in.readLong();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeInt(id_user);
-        dest.writeInt(id_product);
-        dest.writeInt(total);
+        dest.writeString(id);
+        dest.writeString(id_user);
+        dest.writeString(id_product);
+        dest.writeLong(total);
     }
 
     @Override

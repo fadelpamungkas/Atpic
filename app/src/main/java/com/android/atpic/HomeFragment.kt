@@ -19,6 +19,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.File
+import java.util.*
+import java.util.Arrays.sort
+import kotlin.collections.ArrayList
 
 
 internal class HomeFragment : Fragment() {
@@ -67,6 +70,7 @@ internal class HomeFragment : Fragment() {
 //                            })
 //                        }
                         productList.add(product)
+                        Collections.sort(productList, Product.BySold)
                         println(product)
                     }
 

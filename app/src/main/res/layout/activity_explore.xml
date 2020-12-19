@@ -33,6 +33,22 @@
             android:textColor="@color/black"
             android:textSize="21sp" />
 
+<!--        <Button-->
+<!--            android:id="@+id/filter_button"-->
+<!--            android:layout_width="18dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:background="@drawable/filter"-->
+<!--            android:layout_marginStart="180dp"/>-->
+
+        <Button
+            android:id="@+id/search_button1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/search"
+            android:layout_marginStart="200dp"/>
+
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
@@ -40,13 +56,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginTop="12dp"
         android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:tabIndicatorColor="@color/default1"
         app:tabSelectedTextColor="@color/default1"
-        app:tabTextColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:tabTextColor="@color/black" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"

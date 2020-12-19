@@ -3,6 +3,8 @@ package com.android.atpic.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Comparator;
+
 
 public class Product implements Parcelable {
     private String id, name, desc, id_user, id_category, upload_date, photoURL;
@@ -124,4 +126,12 @@ public class Product implements Parcelable {
             return new Product[size];
         }
     };
+
+    public static Comparator<Product> BySold = new Comparator<Product>() {
+        @Override
+        public int compare(Product o1, Product o2) {
+            return - Long.valueOf(o1.sold).compareTo(Long.valueOf(o2.sold));
+        }
+    };
 }
+

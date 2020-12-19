@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -76,6 +77,8 @@ public class ProductActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         dotsIndicator.setViewPager2(viewPager);
 
+//        cartStatus(flag);
+
         database.child("users").child(product.getId_user()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -103,6 +106,16 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 users = snapshot.getValue(Users.class);
+
+//                String[] strs = users.getCart().split(",");
+//
+//                for (String s : strs){
+//                    if (s.equals(product.getId())) {
+//                        flag = 1;
+//                        cartStatus(flag);
+//                        break;
+//                    }
+//                }
             }
 
             @Override
@@ -129,7 +142,7 @@ public class ProductActivity extends AppCompatActivity {
 //                cart.setProgress(0);
 //                cart.pauseAnimation();
 //                cart.playAnimation();
-
+//                cartStatus(flag);
                 if (flag == 0) {
                     flag = 1;
                     cart.setMinAndMaxProgress(0f, 0.8f); //Here, calculation is done on the basis of start and stop frame divided by the total number of frames
@@ -142,7 +155,6 @@ public class ProductActivity extends AppCompatActivity {
                     cart.reverseAnimationSpeed();
                     cart.playAnimation();
                     Toast.makeText(ProductActivity.this, "Removed from cart", Toast.LENGTH_SHORT).show();
-                    //---- Your code here------
                 }
             }
         });
@@ -151,13 +163,31 @@ public class ProductActivity extends AppCompatActivity {
 
     }
 
+    private void cartStatus(int flag){
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (flag == 1){
-            users.setCart(users.getCart() + "," + product.getId());
+            if (users.getCart().equals("")){
+                users.setCart(product.getId());
+                Log.d("ProductActivity", "cart equals null");
+            } else {
+                users.setCart(users.getCart() + "," + product.getId());
+                Log.d("ProductActivity", "cart not null");
+            }
 
             database.child("users").child(mAuth.getCurrentUser().getUid()).setValue(users);
         }
+         else {
+             Log.d("ProductActivity", "flag == 0");
+        }
+//        else{
+//            if (users.getCart().contains(product.getId())){
+//                users.getCart().replace(product.getId(), "");
+//            }
+//        }
     }
 }

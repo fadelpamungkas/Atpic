@@ -2,6 +2,7 @@ package com.android.atpic
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,12 +42,12 @@ internal class CartFragment : Fragment() {
 
         val adapter = CartAdapter(activity)
 
-        database.child("users").child(authUsers!!.uid).addListenerForSingleValueEvent(
+        database.child("users").child(authUsers!!.uid).addValueEventListener(
                 object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         users = snapshot.getValue(Users::class.java)!!
 
-                        if (users != null && users.cart != null) {
+                        if (users != null && users.cart != "") {
                             val strs = users.cart.split(",").toTypedArray()
 
                             cartList.clear()
@@ -76,6 +77,8 @@ internal class CartFragment : Fragment() {
 
                             }
 
+                        } else {
+                            Log.d("CartFragment", "Cart is empty" )
                         }
 
                     }

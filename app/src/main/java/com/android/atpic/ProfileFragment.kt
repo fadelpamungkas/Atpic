@@ -30,23 +30,35 @@ internal class ProfileFragment : Fragment() {
     val myProduct = ArrayList<Product>()
     val database = FirebaseDatabase.getInstance().getReference()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        val btnAdd = view.findViewById<Button>(R.id.btn_addProduct)
+        val btnTopUp = view.findViewById<Button>(R.id.btn_topup)
+        val btnEdit = view.findViewById<Button>(R.id.btn_edit)
+        val btnLogout = view.findViewById<Button>(R.id.btn_signout)
+        val imageAddProduct = view.findViewById<ImageView>(R.id.iv_undrawAddProduct)
+        val tvProfileName = view.findViewById<TextView>(R.id.tv_profileName)
+        val tvCredit = view.findViewById<TextView>(R.id.tv_credit)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_myProduct)
 
         val adapter = ProductAdapter(activity)
 
         database.child("users").child(authUsers!!.uid).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                users = snapshot.getValue(Users::class.java)!!
                 myProduct.clear()
+                users = snapshot.getValue(Users::class.java)!!
 
-                tv_profileName.text = users.name
+                tvProfileName.text = users.name
                 val credit = "Rp" + users.credit.toString()
-                tv_credit.text = credit
+                tvCredit.text = credit
 
                 database.child("product").addValueEventListener(
                         object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
+                                myProduct.clear()
                                 for(data in snapshot.children){
                                     val product = data.getValue(Product::class.java)
                                     if (product != null && product.id_user == users.id){
@@ -55,9 +67,9 @@ internal class ProfileFragment : Fragment() {
                                     }
                                     if (myProduct.isNotEmpty()){
                                         adapter.productList = myProduct
-                                        rv_myProduct.adapter = adapter
-                                        rv_myProduct.visibility = View.VISIBLE
-                                        iv_undrawAddProduct.visibility = View.INVISIBLE
+                                        recyclerView.adapter = adapter
+                                        recyclerView.visibility = View.VISIBLE
+                                        imageAddProduct.visibility = View.INVISIBLE
                                         Log.d("ProfileFragment", "myProduct isnotempty")
                                     }
 
@@ -80,19 +92,6 @@ internal class ProfileFragment : Fragment() {
         }
         )
 
-
-    }
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
-
-        val btnAdd = view.findViewById<Button>(R.id.btn_addProduct)
-        val btnTopUp = view.findViewById<Button>(R.id.btn_topup)
-        val btnEdit = view.findViewById<Button>(R.id.btn_edit)
-        val btnLogout = view.findViewById<Button>(R.id.btn_signout)
-        val imageAddProduct = view.findViewById<ImageView>(R.id.iv_undrawAddProduct)
 
 
         btnLogout.setOnClickListener{

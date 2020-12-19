@@ -210,8 +210,9 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                 imagesEncodedList = new ArrayList<String>();
 
                 if (data.getData() != null) {         //on Single image selected
-
+                    imageUriList = new ArrayList<>();
                     imageUri = data.getData();
+                    imageUriList.add(imageUri);
                     Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
                     cursor.moveToFirst();
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);

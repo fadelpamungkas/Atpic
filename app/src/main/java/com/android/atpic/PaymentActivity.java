@@ -106,6 +106,7 @@ public class PaymentActivity extends AppCompatActivity {
                         database.child("product").child(list.getId()).setValue(list);
                     }
                     users.setCredit(users.getCredit() - (price+10000));
+                    users.setCart("");
                     database.child("users").child(users.getId()).setValue(users);
                     Intent intent = new Intent(PaymentActivity.this, SuccessActivity.class);
                     intent.putParcelableArrayListExtra(PaymentActivity.EXTRA_PRODUCT, productList);

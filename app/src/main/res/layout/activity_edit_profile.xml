@@ -95,13 +95,15 @@
 
         <EditText
             android:id="@+id/edt_email"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:textColor="#9098B1"
+            android:textColor="@color/black"
             android:layout_marginTop="43dp"
+            android:layout_marginStart="50dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/email"
             app:layout_constraintTop_toBottomOf="@id/iv_gambarprofile" />
 
         <ImageView
@@ -120,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
-            android:text="Change Password"
+            android:text="Password"
             android:textColor="@color/blue_profile"
             android:layout_marginTop="43dp"
             android:layout_marginStart="5dp"
@@ -129,14 +131,15 @@
 
         <EditText
             android:id="@+id/edt_pass"
-            android:layout_width="100dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="***********"
             android:inputType="textPassword"
-            android:textColor="#9098B1"
+            android:textColor="@color/black"
             android:layout_marginTop="43dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pass"
             app:layout_constraintTop_toBottomOf="@id/iv_email" />
 
         <Button

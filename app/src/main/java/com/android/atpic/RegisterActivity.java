@@ -119,6 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                                     users.setEmail(email);
                                                     users.setPassword(password);
                                                     users.setCredit(0);
+                                                    users.setCart("");
                                                     database.child("users").child(mAuth.getUid()).setValue(users);
                                                     finish();
                                                 }
